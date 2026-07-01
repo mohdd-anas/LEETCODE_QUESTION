@@ -30,18 +30,9 @@ class Solution {
             l++;
         }
              
-        //     for (int k = r; k >= l; k--) {
-        //         list.add(arr[b][k]);
-        //     }
-        //     b--;
-        //     for (int z = b; z >= t; z--) {
-        //         list.add(arr[z][l]);
-        //     }
-        //     l++;
-           
-        // }
         
         
+
     }
     return list;
     }
