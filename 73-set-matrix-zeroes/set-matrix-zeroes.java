@@ -1,40 +1,58 @@
 class Solution {
     public void setZeroes(int[][] arr) {
-        int[] col=new int[arr[0].length];
-        int[] row=new int[arr.length];
-
+        int col=0;
         for(int i=0;i<arr.length;i++)
         {
             for(int j=0;j<arr[i].length;j++)
             {
+                if(j==0 && arr[i][j]==0)
+                {
+                    col=1;
+
+                }
                 if(arr[i][j]==0)
                 {
-                    row[i]=1;
-                    col[j]=1;
+                    //arr[0][j]=1;
+                    arr[i][0]=0;
+                    if(j!=0)
+                    {
+                        arr[0][j]=0;
+                    }
+                    else
+                    {
+                        col=1;
+                    }
                 }
+                
             }
         }
-        for(int x=0;x<row.length;x++)
+        for(int i=1;i<arr.length;i++)
         {
-            if(row[x]==1)
+            for(int j=1;j<arr[i].length;j++)
             {
-                for(int l=0;l<arr[0].length;l++)
+                if(arr[i][j]!=0)
                 {
-                    arr[x][l]=0;
+                    if(arr[0][j]==0 ||arr[i][0]==0)
+                    {
+                        arr[i][j]=0;
+                    }
                 }
             }
         }
-
-        for(int g=0;g<col.length;g++)
+        if(arr[0][0]==0)
         {
-            if(col[g]==1)
+            for(int j=0;j<arr[0].length;j++)
             {
-                for(int h=0;h<arr.length;h++)
-                {
-                    arr[h][g]=0;
-                }
+                arr[0][j]=0;
             }
         }
-        
+        if(col==1)
+        {
+            for(int i=0;i<arr.length;i++)
+            {
+                arr[i][0]=0;
+                
+            }
+        }
     }
 }
