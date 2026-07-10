@@ -1,18 +1,28 @@
 class Solution {
     public int numSubarraysWithSum(int[] nums, int goal) {
-        HashMap<Integer,Integer> map=new HashMap<>();
-        int sum=0;
-        int count=0;
-        map.put(0,1);
-        for(int j=0;j<nums.length;j++)
+
+        int a = countSubArray(nums, goal);
+        int b = countSubArray(nums, goal - 1);
+        return a - b;
+    }
+
+    public int countSubArray(int[] arr, int goal) {
+       int i=0;
+       int j=0;
+       int sum=0;
+       int count=0;
+       while(j<arr.length)
+       {
+        if(goal<0) return 0;
+        sum=sum+arr[j];
+        while(sum>goal)
         {
-            sum=sum+nums[j];
-            int remain=sum-goal;
-            if(map.containsKey(remain))
-            {
-                count=count+map.get(remain);
-            }
-            map.put(sum,map.getOrDefault(sum,0)+1);        }
-        return count;
+            sum=sum-arr[i];
+            i++;
+        }
+        count=count+(j-i+1);
+        j++;
+       }
+       return count;
     }
 }
