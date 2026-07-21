@@ -1,18 +1,8 @@
 class Solution {
     public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
-       // String[] word1=new String[n];
+       
         int i;
-        // for(i=0;i<word1.length;i++)
-        // {
-        //     word1[i]=sc.next();
-        // }
-        //int m=sc.nextInt();
-       // String[] word2=new String[m];
-        
-        // for(i=0;i<word2.length;i++)
-        // {
-        //     word2[i]=sc.next();
-        // }
+       
         
         String ans1="";
         String ans2="";
