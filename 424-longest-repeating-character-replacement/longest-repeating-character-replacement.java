@@ -12,7 +12,7 @@ class Solution {
             max=Math.max(map.get(s.charAt(j)),max);
             cur=j-i+1;
            
-            while((cur-max)>k)
+           if((cur-max)>k)
             {
                 map.put(s.charAt(i),map.getOrDefault(s.charAt(i),0)-1);
                 i++;
