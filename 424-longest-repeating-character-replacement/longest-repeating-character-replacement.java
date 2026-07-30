@@ -9,7 +9,7 @@ class Solution {
         while(j<s.length())
         {
             map.put(s.charAt(j),map.getOrDefault(s.charAt(j),0)+1);
-            max=Collections.max(map.values());
+            max=Math.max(map.get(s.charAt(j)),max);
             cur=j-i+1;
            
             while((cur-max)>k)
