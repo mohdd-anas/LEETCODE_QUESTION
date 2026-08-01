@@ -1,48 +1,44 @@
 class Solution {
     public String minWindow(String s, String t) {
-        int count=t.length();
-        HashMap<Character,Integer> map=new HashMap<>();
-        for(int index=0;index<t.length();index++)
-        {
-            map.put(t.charAt(index),map.getOrDefault(t.charAt(index),0)+1);
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int c = 0; c < t.length(); c++) {
+            map.put(t.charAt(c), map.getOrDefault(t.charAt(c), 0) + 1);
         }
-        int i=0;
-        int j=0;
-        int startIndex=-1;
-        int minLen=Integer.MAX_VALUE;
-       
-        while(j<s.length())
-        {
-            if(map.getOrDefault(s.charAt(j),0)>0)
-            {
-                count--;
-                
-            }
-            map.put(s.charAt(j),map.getOrDefault(s.charAt(j),0)-1);
-            while(count==0)
-            {
-               int curLen=j-i+1;
-               if(curLen<minLen)
-               {
-                startIndex=i;
-                minLen=curLen;
-               }
-              
-               map.put(s.charAt(i),map.getOrDefault(s.charAt(i),0)+1);
-               if(map.get(s.charAt(i))>0)
-               {
-                count++;
-               }
-               i++;
+        int i = 0;
+        int minLen = Integer.MAX_VALUE;
+        int len = -1;
+        int startIndex = -1;
+        int count = 0;
+        for (int j = 0; j < s.length(); j++) {
+            char right = s.charAt(j);
+            if (map.containsKey(right)) {
+                map.put(s.charAt(j), map.getOrDefault(s.charAt(j), 0) - 1);
+                if (map.get(right) >= 0) {
+                    count++;
+                }
 
             }
-            j++;
+            while (count == t.length()) {
+                len = j - i + 1;
+                if (len < minLen) {
+                    minLen = len;
+                    startIndex = i;
+                }
+                char left = s.charAt(i);
+                if (map.containsKey(left)) {
+                    map.put(left, map.get(left) + 1);
+                    if (map.get(left) > 0) {
+                        count--;
+                    }
+                }
+                i++;
+
+            }
 
         }
-        if(startIndex==-1)
-        {
+        if (minLen == Integer.MAX_VALUE) {
             return "";
         }
-        return s.substring(startIndex,startIndex+minLen);
+        return s.substring(startIndex, minLen + startIndex);
     }
 }
