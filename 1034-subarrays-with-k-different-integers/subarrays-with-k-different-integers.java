@@ -1,37 +1,29 @@
 class Solution {
     public int subarraysWithKDistinct(int[] nums, int k) {
-        return goodArray(nums,k)-goodArray(nums,k-1);
-        
+        return solve(nums,k) - solve(nums,k-1);
     }
-    public int goodArray(int[] arr,int k)
+    public int solve(int[] nums,int k)
     {
-        if(k<0)
-        {
-            return 0;
-        }
-        HashMap<Integer,Integer> map=new HashMap<>();
         int i=0;
-        int j=0;
         int count=0;
-        while(j<arr.length)
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int j=0;j<nums.length;j++)
         {
-            map.put(arr[j],map.getOrDefault(arr[j],0)+1);
-           
+            map.put(nums[j],map.getOrDefault(nums[j],0)+1);
+            
+                
+        
             while(map.size()>k)
             {
-                map.put(arr[i],map.get(arr[i])-1);
-                if(map.get(arr[i])==0)
+                map.put(nums[i],map.get(nums[i])-1);
+                if(map.get(nums[i])==0)
                 {
-                    map.remove(arr[i]);
+                    map.remove(nums[i]);
                 }
                 i++;
-                
             }
-             if(map.size()<=k)
-            {
-                count=count+(j-i+1);
-            }
-            j++;
+            count=count+(j-i+1);
+
         }
         return count;
     }
