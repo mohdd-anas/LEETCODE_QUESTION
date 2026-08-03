@@ -1,29 +1,26 @@
 class Solution {
     public String sortVowels(String s) {
-        ArrayList<Character> vowel=new ArrayList<>();
-        char[] arr=s.toCharArray();
-        String a="aeiouAEIOU";
+        char[] original=s.toCharArray();
+        String vowel="aeiouAEIOU";
+        List<Character> ch=new ArrayList<>();
         for(int i=0;i<s.length();i++)
         {
-            if(a.indexOf(s.charAt(i))!=-1)
+            if(vowel.indexOf(s.charAt(i))!=-1)
             {
-                vowel.add(s.charAt(i));
-                //original=original+"1";
-            
+                ch.add(s.charAt(i));
+                original[i]='_';
             }
         }
-        Collections.sort(vowel);
-        int k=0;
-        for(int i=0;i<arr.length;i++)
+        Collections.sort(ch);
+        int l=0;
+        for(int i=0;i<original.length;i++)
         {
-            if(a.indexOf(arr[i])!=-1)
+            if(original[i]=='_')
             {
-                arr[i]=vowel.get(k);
-                k++;
+                original[i]=ch.get(l);
+                l++;
             }
         }
-    
-        return new String(arr);
-
+        return new String(original);
     }
 }
